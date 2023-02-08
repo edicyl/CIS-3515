@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SignUpForm</string>
+    <string name="app_desc">App Sign-up Form</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm">Confirm Password</string>
+    <string name="button_save">Save</string>
+    <string name="page_title">Please sign up here!</string>
 </resources>
