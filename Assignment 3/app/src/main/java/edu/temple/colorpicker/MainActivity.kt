@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val colors = arrayOf("Black", "Blue", "Cyan", "Green", "Grey", "Lime", "Maroon", "Olive", "Red", "Silver", "White", "Yellow")
+        val colors = arrayOf("Select a color", "Black", "Blue", "Cyan", "Green", "Grey", "Lime", "Maroon", "Olive", "Red", "Silver", "White", "Yellow")
 
         val spinner = findViewById<Spinner>(R.id.spinner)
         val canvas = findViewById<View>(R.id.colorDisplay)
@@ -30,16 +30,22 @@ class MainActivity : AppCompatActivity()
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long)
             {
                 p0?.run{
-                    val color = getItemAtPosition(p2).toString()
-                    canvas.setBackgroundColor(Color.parseColor(color))
+                    if (p2 == 0)
+                    {
+                        canvas.setBackgroundColor(Color.parseColor("White"))
+                        return
+                    }
+
+                    else
+                    {
+                        val color = getItemAtPosition(p2).toString()
+                        canvas.setBackgroundColor(Color.parseColor(color))
+                    }
                 }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?)
             {
-                p0?.run{
-                    canvas.setBackgroundColor(Color.parseColor("White"))
-                }
             }
         }
     }
@@ -72,7 +78,6 @@ class ColorAdapter(_context: Context, _colors: Array<String>) : BaseAdapter()
         if (p1 != null)
         {
             textView = p1 as TextView
-            textView.text = colors[p0]
         }
 
         else
@@ -80,9 +85,9 @@ class ColorAdapter(_context: Context, _colors: Array<String>) : BaseAdapter()
             textView = TextView(context)
             textView.textSize = 22f
             textView.setPadding(5, 10, 0, 10)
-            textView.text = context.getString(R.string.colorChoose)
         }
 
+        textView.text = colors[p0]
         textView.setBackgroundColor(Color.parseColor("White"))
 
         return textView
@@ -108,15 +113,23 @@ class ColorAdapter(_context: Context, _colors: Array<String>) : BaseAdapter()
 
         if (position == 0)
         {
-            textView.setTextColor(Color.parseColor("White"))
+            textView.setTextColor(Color.parseColor("Grey"))
         }
 
-        else if (position == 10)
+        else
         {
-            textView.setTextColor(Color.parseColor("Black"))
-        }
+            if (position == 1)
+            {
+                textView.setTextColor(Color.parseColor("White"))
+            }
 
-        textView.setBackgroundColor(Color.parseColor(colors[position]))
+            else if (position == 11)
+            {
+                textView.setTextColor(Color.parseColor("Black"))
+            }
+
+            textView.setBackgroundColor(Color.parseColor(colors[position]))
+        }
 
         return textView
     }
