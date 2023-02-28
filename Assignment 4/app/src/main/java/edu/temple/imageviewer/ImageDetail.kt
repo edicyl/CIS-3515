@@ -16,12 +16,14 @@ class ImageDetail : AppCompatActivity()
         setContentView(R.layout.activity_image_detail)
 
         val image = intent.getIntExtra("image", 0)
+        val name = intent.getStringExtra("name")
 
         if (image != 0)
         {
             imageView = findViewById(R.id.imageFullView)
             textView = findViewById(R.id.imageText)
             imageView.setImageResource(image)
+            textView.text = name
         }
     }
 }
