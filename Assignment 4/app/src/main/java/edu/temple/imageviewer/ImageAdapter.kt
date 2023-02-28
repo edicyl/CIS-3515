@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 
 class ImageAdapter(private val imageList: List<Int>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>()
 {
+    var onImageClick : ((Int) -> Unit)? = null
+
     class ImageViewHolder(imageView: View) : RecyclerView.ViewHolder(imageView)
     {
         val imageView: ImageView = imageView.findViewById(R.id.imageView)
@@ -35,5 +37,9 @@ class ImageAdapter(private val imageList: List<Int>) : RecyclerView.Adapter<Imag
              .override(200, 200)
              .centerCrop()
              .into(holder.imageView)
+
+        holder.imageView.setOnClickListener {
+            onImageClick?.invoke(image)
+        }
     }
 }

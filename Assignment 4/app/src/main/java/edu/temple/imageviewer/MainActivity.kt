@@ -1,5 +1,6 @@
 package edu.temple.imageviewer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,5 +40,11 @@ class MainActivity : AppCompatActivity()
 
         imageAdapter = ImageAdapter(imageList)
         recyclerView.adapter = imageAdapter
+
+        imageAdapter.onImageClick = {
+            val click = Intent(this, ImageDetail::class.java)
+            click.putExtra("image", it)
+            startActivity(click)
+        }
     }
 }
