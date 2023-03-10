@@ -22,21 +22,8 @@ class MainActivity : AppCompatActivity()
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
 
-        // val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         val layoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = layoutManager
-
-        // 10 images
-        /*imageList.add(R.drawable.bear)
-        imageList.add(R.drawable.capybara)
-        imageList.add(R.drawable.cat)
-        imageList.add(R.drawable.dog)
-        imageList.add(R.drawable.fox)
-        imageList.add(R.drawable.lion)
-        imageList.add(R.drawable.owl)
-        imageList.add(R.drawable.panda)
-        imageList.add(R.drawable.parrot)
-        imageList.add(R.drawable.turtle)*/
 
         imageList = arrayListOf(
             ImageItem(R.drawable.bear, "Bear"),
