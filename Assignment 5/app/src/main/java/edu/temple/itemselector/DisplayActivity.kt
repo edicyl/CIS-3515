@@ -17,6 +17,7 @@ class DisplayActivity : AppCompatActivity()
 
         val image = intent.getIntExtra("image", 0)
         val name = intent.getStringExtra("name")
+        val exitButton = findViewById<TextView>(R.id.buttonExit)
 
         if (image != 0)
         {
@@ -24,6 +25,10 @@ class DisplayActivity : AppCompatActivity()
             textView = findViewById(R.id.imageText)
             imageView.setImageResource(image)
             textView.text = name
+
+            exitButton.setOnClickListener {
+                finish()
+            }
         }
     }
 }
