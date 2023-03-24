@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ItemSelector</string>
+    <string name="image_desc">Image du plat choisi</string>
+    <string name="full_image_desc">Image complète du plat choisi</string>
+    <string-array name="labels">
+        <item>Cliquez sur une image ci-dessous pour la voir !</item>
+        <item>Sortie</item>
+    </string-array>
+    <string-array name="foods">
+        <item>Américain : Burger</item>
+        <item>Chinois : Dumplings</item>
+        <item>Anglais : Petit-déjeuner anglais</item>
+        <item>Indien : Curry</item>
+        <item>Italien : Spaghetti</item>
+        <item>Japonais : Ramen</item>
+        <item>Coréen : Bibimbap</item>
+        <item>Mexicains : Tacos</item>
+        <item>Afrique du Sud : Bobotie</item>
+        <item>Vietnamien : Pho</item>
+    </string-array>
+</resources>

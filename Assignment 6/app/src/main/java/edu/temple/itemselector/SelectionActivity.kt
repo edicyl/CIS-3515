@@ -17,6 +17,7 @@ class SelectionActivity : AppCompatActivity()
     companion object
     {
         lateinit var stringArray: Array<String>
+        lateinit var foodArray: Array<String>
     }
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -32,21 +33,22 @@ class SelectionActivity : AppCompatActivity()
         recyclerView.layoutManager = layoutManager
 
         stringArray = resources.getStringArray(R.array.labels)
+        foodArray = resources.getStringArray(R.array.foods)
 
         textView = findViewById(R.id.textView)
         textView.text = stringArray[0]
 
         imageList = arrayListOf(
-            ImageItem(R.drawable.american, "American:\nBurger"),
-            ImageItem(R.drawable.chinese, "Chinese:\nDumplings"),
-            ImageItem(R.drawable.english, "English:\nEnglish Breakfast"),
-            ImageItem(R.drawable.indian, "Indian:\nCurry"),
-            ImageItem(R.drawable.italian, "Italian:\nSpaghetti"),
-            ImageItem(R.drawable.japanese, "Japanese:\nRamen"),
-            ImageItem(R.drawable.korean, "Korean:\nBibimbap"),
-            ImageItem(R.drawable.mexican, "Mexican:\nTacos"),
-            ImageItem(R.drawable.south_african, "South African:\nBobotie"),
-            ImageItem(R.drawable.vietnamese, "Vietnamese:\nPho")
+            ImageItem(R.drawable.american, foodArray[0]),
+            ImageItem(R.drawable.chinese, foodArray[1]),
+            ImageItem(R.drawable.english, foodArray[2]),
+            ImageItem(R.drawable.indian, foodArray[3]),
+            ImageItem(R.drawable.italian, foodArray[4]),
+            ImageItem(R.drawable.japanese, foodArray[5]),
+            ImageItem(R.drawable.korean, foodArray[6]),
+            ImageItem(R.drawable.mexican, foodArray[7]),
+            ImageItem(R.drawable.south_african, foodArray[8]),
+            ImageItem(R.drawable.vietnamese, foodArray[9])
         )
 
         imageAdapter = ImageAdapter(imageList)
