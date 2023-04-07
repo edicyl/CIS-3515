@@ -24,6 +24,11 @@ class BookList
         return library.size
     }
 
+    fun indexOf(book: Book): Int
+    {
+        return library.indexOf(book)
+    }
+
     fun contains(book: Book): Boolean
     {
         return library.contains(book)
@@ -32,5 +37,10 @@ class BookList
     fun burn()
     {
         library.clear()
+    }
+
+    override fun toString(): String
+    {
+        return library.joinToString(separator = "\n")
     }
 }
