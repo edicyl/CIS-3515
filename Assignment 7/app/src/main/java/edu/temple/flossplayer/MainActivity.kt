@@ -1,8 +1,9 @@
 package edu.temple.flossplayer
 
-import android.content.res.Configuration
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity()
@@ -11,64 +12,46 @@ class MainActivity : AppCompatActivity()
     private lateinit var bookViewModel: BookViewModel
     private var isLand: Boolean = false
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Instance of BookList class
-        bookList = BookList()
+        // Call function to generate 10 books
+        bookList = generateBookList(this)
 
-        // Create a list of books and authors
-        val bookData = listOf(
-            Pair("The Catcher in the Rye", "J.D. Salinger"),
-            Pair("To Kill a Mockingbird", "Harper Lee"),
-            Pair("Pride and Prejudice", "Jane Austen"),
-            Pair("1984", "George Orwell"),
-            Pair("The Great Gatsby", "F. Scott Fitzgerald"),
-            Pair("Brave New World", "Aldous Huxley"),
-            Pair("The Hobbit", "J.R.R. Tolkien"),
-            Pair("Moby-Dick", "Herman Melville"),
-            Pair("The Odyssey", "Homer"),
-            Pair("The Grapes of Wrath", "John Steinbeck")
-        )
-
-        // Add the books to BookList
-        for (book in bookData)
-        {
-            bookList.add(Book(book.first, book.second))
-        }
-
+        // Create the ViewModel and set the book list
         bookViewModel = ViewModelProvider(this)[BookViewModel::class.java]
         bookViewModel.setBooks(bookList)
 
-        isLand = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        isLand = findViewById<View>(R.id.displayBookPlayer) != null
 
-        if (savedInstanceState == null)
-        {
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-
-            if (isLand)
-            {
-                fragmentTransaction.replace(R.id.displayBookList, BookListFragment())
-                fragmentTransaction.replace(R.id.displayBookPlayer, BookPlayerFragment())
+        // Check if the screen is in landscape mode
+        if (savedInstanceState == null) {
+            if (isLand) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.displayBookList, BookListFragment())
+                    .replace(R.id.displayBookPlayer, BookPlayerFragment())
+                    .commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, BookListFragment())
+                    .commit()
             }
-
-            else
-            {
-                if (bookViewModel.bookPlayerVisible.value == true)
-                {
-                    fragmentTransaction.replace(R.id.displaySingle, BookPlayerFragment())
-                }
-
-                else
-                {
-                    fragmentTransaction.replace(R.id.displaySingle, BookListFragment())
-                }
-            }
-
-            fragmentTransaction.commit()
         }
+    }
+
+    // Generate the list of books from the string resources
+    private fun generateBookList(context: Context): BookList
+    {
+        val bookList = BookList()
+        val bookTitles = context.resources.getStringArray(R.array.book_titles)
+        val bookAuthors = context.resources.getStringArray(R.array.book_authors)
+
+        for (i in bookTitles.indices)
+        {
+            bookList.add(Book(bookTitles[i], bookAuthors[i]))
+        }
+
+        return bookList
     }
 }

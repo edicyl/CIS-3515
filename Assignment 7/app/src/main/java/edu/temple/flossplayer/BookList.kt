@@ -4,43 +4,39 @@ class BookList
 {
     private val library = ArrayList<Book>()
 
-    fun add(book: Book)
-    {
+    fun add(book: Book) {
         library.add(book)
     }
 
-    fun remove(book: Book)
-    {
+    fun remove(book: Book) {
         library.remove(book)
     }
 
-    fun get(index: Int): Book
-    {
+    fun get(index: Int): Book {
         return library[index]
     }
 
-    fun size(): Int
-    {
+    fun getLibrary(): List<Book> {
+        return library
+    }
+
+    fun size(): Int {
         return library.size
     }
 
-    fun indexOf(book: Book): Int
-    {
+    fun indexOf(book: Book): Int {
         return library.indexOf(book)
     }
 
-    fun contains(book: Book): Boolean
-    {
+    fun contains(book: Book): Boolean {
         return library.contains(book)
     }
 
-    fun burn()
-    {
+    fun burn() {
         library.clear()
     }
 
-    override fun toString(): String
-    {
+    override fun toString(): String {
         return library.joinToString(separator = "\n")
     }
 }
